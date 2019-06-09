@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $nama = $_POST['nama'];
 $email = $_POST['email'];
 $alamat = $_POST['alamat'];
@@ -7,7 +9,16 @@ $id = $_POST['id'];
 $id_user = $_POST['id_user'];
 
 include('config.php');
-$query = "UPDATE perusahaan SET nama_perusahaan = '$nama', alamat = '$alamat', no_telp = '$no_telp', email = '$email' WHERE id_perusahaan = '$id'";
+
+if($_SESSION['level']=="admin")
+{
+	$query = "UPDATE admin SET nama_admin = '$nama', alamat = '$alamat', no_telp = '$no_telp', email = '$email' WHERE id_admin = '$id'";
+}
+else
+{
+	$query = "UPDATE perusahaan SET nama_perusahaan = '$nama', alamat = '$alamat', no_telp = '$no_telp', email = '$email' WHERE id_perusahaan = '$id'";
+}
+
 $query1 = "UPDATE user SET email = '$email' WHERE id_user = '$id_user' ";
 $result = mysqli_query($conn, $query);
 $result = mysqli_query($conn, $query1);

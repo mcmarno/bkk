@@ -1,5 +1,5 @@
 <?php
-$nama = $_POST['nama_perusahaan'];
+$nama = $_POST['nama_admin'];
 $email = $_POST['email'];
 $alamat = $_POST['alamat'];
 $no_telp = $_POST['no_telp'];
@@ -8,7 +8,7 @@ $password = hash('sha256', $pass);
 $level = "admin";
 
 include('config.php');
-$query = "INSERT INTO perusahaan (nama_perusahaan, alamat, no_telp, email) VALUES ('$nama', '$alamat', '$no_telp', '$email')";
+$query = "INSERT INTO admin (nama_admin, alamat, no_telp, email) VALUES ('$nama', '$alamat', '$no_telp', '$email')";
 $query1 = "INSERT INTO user (email, password, level) VALUES ('$email', '$password', '$level')";
 $result = mysqli_query($conn, $query);
 $result = mysqli_query($conn, $query1);
@@ -57,6 +57,6 @@ $mail->SMTPAuth = true;
  
 
 
-header('location:perusahaan.php');
+header('location:admin.php');
 
 ?>

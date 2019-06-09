@@ -90,7 +90,8 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
     if($_SESSION['level']=="admin")
     {
         include('headerAdmin.php');
-    }else
+    }
+    else
     {
         include('headerPerusahaan.php');
     }
@@ -99,9 +100,27 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
     <!-- Start Status area -->
     <?php
     include('config.php');
-    $email = $_SESSION['email'];
-    $result = mysqli_query($conn, "SELECT * FROM perusahaan WHERE email = '$email'");
-    $data = mysqli_fetch_array($result);
+    if($_SESSION['level']=="admin")
+    {
+        $email = $_SESSION['email'];
+        $result = mysqli_query($conn, "SELECT * FROM admin WHERE email = '$email'");
+        $data = mysqli_fetch_array($result);
+        $nama = $data['nama_admin'];
+        $alamat = $data['alamat'];
+        $no_telp = $data['no_telp'];
+        $email = $data['email'];
+    }
+    else
+    {
+        $email = $_SESSION['email'];
+        $result = mysqli_query($conn, "SELECT * FROM perusahaan WHERE email = '$email'");
+        $data = mysqli_fetch_array($result); 
+        $nama = $data['nama_perusahaan'];
+        $alamat = $data['alamat'];
+        $no_telp = $data['no_telp'];
+        $email = $data['email'];
+    }
+
     ?>
 
      <div class="dialog-area">
@@ -120,7 +139,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                     </div>
                                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                         <div class="nk-int-st">
-                                            <input type="text" class="form-control input-sm" value="<?php echo $data['nama_perusahaan'] ?>" readonly="readonly">
+                                            <input type="text" class="form-control input-sm" value="<?php echo $nama ?>" readonly="readonly">
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +153,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                     </div>
                                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                         <div class="nk-int-st">
-                                            <input type="text" class="form-control input-sm" value="<?php echo $data['alamat'] ?>" readonly="readonly">
+                                            <input type="text" class="form-control input-sm" value="<?php echo $alamat ?>" readonly="readonly">
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +167,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                     </div>
                                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                         <div class="nk-int-st">
-                                            <input type="text" class="form-control input-sm" value="<?php echo $data['no_telp'] ?>" readonly="readonly">
+                                            <input type="text" class="form-control input-sm" value="<?php echo $no_telp ?>" readonly="readonly">
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +181,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                     </div>
                                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                         <div class="nk-int-st">
-                                            <input type="text" class="form-control input-sm" value="<?php echo $data['email'] ?>" readonly="readonly">
+                                            <input type="text" class="form-control input-sm" value="<?php echo $email ?>" readonly="readonly">
                                         </div>
                                     </div>
                                 </div>

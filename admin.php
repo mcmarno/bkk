@@ -109,7 +109,7 @@ if($_SESSION['level']!="admin") {
     <!-- Normal Table area Start-->
     <?php
     include_once "config.php";
-    $result = mysqli_query($conn, "SELECT * FROM user ORDER BY id_user ASC");
+    $result = mysqli_query($conn, "SELECT * FROM admin ORDER BY id_admin ASC");
     ?>
     <div class="data-table-area">
         <div class="container">
@@ -117,23 +117,29 @@ if($_SESSION['level']!="admin") {
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="data-table-list">
                         <div class="basic-tb-hd">
-                            <h2>Data User</h2>
-                            <a href="admin.php"><button class="btn btn-info btn-icon-notika">Data Admin</button></a>
+                            <h2>Data Admin</h2>
+                            <a href="tambahAdmin.php"><button class="btn btn-primary btn-icon-notika"><i class="notika-icon notika-plus-symbol" title="tambah"> Tambah Admin</i> </button></a>
                         </div>
                         <div class="table-responsive">
                             <table id="data-table-basic" class="table table-striped">
                                 <thead>
                                     <tr>
+                                        <th>Nama</th>
+                                        <th>Alamat</th>
+                                        <th>NO Telp</th>
                                         <th>Email</th>
-                                        <th>Level</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                    <?php  
                                     while($data = mysqli_fetch_array($result)) {
                                         echo"<tr>";
-                                        echo "<td>" .$data['email']. "</td>";
-                                        echo "<td>".$data['level']."</td>";
+                                        echo "<td>" .$data['nama_admin']. "</td>";
+                                        echo "<td>".$data['alamat']."</td>";
+                                        echo "<td>".$data['no_telp']."</td>";
+                                        echo "<td>".$data['email']."</td>";
+                                        echo "<td><a href='hapusAdmin.php?id=$data[id_admin]'><button title='hapus' class='btn btn-danger btn-sm fa fa-trash'> hapus </button></a></td>";
                                         echo"</tr>";
                                     }
                                     ?>

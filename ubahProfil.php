@@ -99,9 +99,29 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
     <!-- Start Status area -->
     <?php
     include('config.php');
-    $email = $_SESSION['email'];
-    $result = mysqli_query($conn, "SELECT * FROM perusahaan WHERE email = '$email'");
-    $data = mysqli_fetch_array($result);
+    if($_SESSION['level']=="admin")
+    {
+        $email = $_SESSION['email'];
+        $result = mysqli_query($conn, "SELECT * FROM admin WHERE email = '$email'");
+        $data = mysqli_fetch_array($result);
+        $id = $data['id_admin'];
+        $nama = $data['nama_admin'];
+        $alamat = $data['alamat'];
+        $no_telp = $data['no_telp'];
+        $email = $data['email'];
+    }
+    else
+    {
+        $email = $_SESSION['email'];
+        $result = mysqli_query($conn, "SELECT * FROM perusahaan WHERE email = '$email'");
+        $data = mysqli_fetch_array($result);
+        $id = $data['id_perusahaan']; 
+        $nama = $data['nama_perusahaan'];
+        $alamat = $data['alamat'];
+        $no_telp = $data['no_telp'];
+        $email = $data['email'];
+    }
+
     $hasil = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
     $dat = mysqli_fetch_array($hasil);
     ?>
@@ -119,7 +139,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                 <div class="form-group">
                                     <div class="row">
                                         <div>
-                                            <input type="hidden" name="id" value="<?php echo $data['id_perusahaan'] ?>">
+                                            <input type="hidden" name="id" value="<?php echo $id ?>">
                                         </div>
                                         <div>
                                             <input type="hidden" name="id_user" value="<?php echo $dat['id_user'] ?>">
@@ -129,7 +149,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                         </div>
                                         <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                             <div class="nk-int-st">
-                                                <input type="text" class="form-control input-sm" value="<?php echo $data['nama_perusahaan'] ?>" name="nama">
+                                                <input type="text" class="form-control input-sm" value="<?php echo $nama ?>" name="nama">
                                             </div>
                                         </div>
                                     </div>
@@ -143,7 +163,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                         </div>
                                         <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                             <div class="nk-int-st">
-                                                <input type="text" class="form-control input-sm" value="<?php echo $data['alamat'] ?>" name="alamat">
+                                                <input type="text" class="form-control input-sm" value="<?php echo $alamat ?>" name="alamat">
                                             </div>
                                         </div>
                                     </div>
@@ -157,7 +177,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                         </div>
                                         <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                             <div class="nk-int-st">
-                                                <input type="text" class="form-control input-sm" value="<?php echo $data['no_telp'] ?>" name="no_telp">
+                                                <input type="text" class="form-control input-sm" value="<?php echo $no_telp ?>" name="no_telp">
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +191,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                         </div>
                                         <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                             <div class="nk-int-st">
-                                                <input type="text" class="form-control input-sm" value="<?php echo $data['email'] ?>" name="email">
+                                                <input type="text" class="form-control input-sm" value="<?php echo $email ?>" name="email">
                                             </div>
                                         </div>
                                     </div>

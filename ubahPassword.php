@@ -102,8 +102,6 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
     $email = $_SESSION['email'];
     $hasil = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
     $dat = mysqli_fetch_array($hasil);
-    $result = mysqli_query($conn, "SELECT * FROM perusahaan WHERE email = '$email'");
-    $data = mysqli_fetch_array($result);
     ?>
 
     <div class="dialog-area">
@@ -123,9 +121,6 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                         </div>
                                         <div>
                                             <input type="hidden" name="email" value="<?php echo $dat['email'] ?>">
-                                        </div>
-                                        <div>
-                                            <input type="hidden" name="nama" value="<?php echo $data['nama_perusahaan'] ?>">
                                         </div>
 
                                         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">

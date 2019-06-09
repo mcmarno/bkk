@@ -131,7 +131,7 @@ $a = passAcak(4);
                                             <div class="input-group">
                                                 <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
                                                 <div class="nk-int-st">
-                                                    <input type="text" class="form-control" placeholder="Nama Admin" name="nama_perusahaan">
+                                                    <input type="text" class="form-control" placeholder="Nama Admin" name="nama_admin">
                                                 </div>
                                             </div>
 
