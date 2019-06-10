@@ -3,7 +3,7 @@ session_start();
 if($_SESSION['level']==""){
     header("location:login.php");
 }
-if($_SESSION['level']!=("admin" OR "perusahaan")){
+if($_SESSION['level']!=("admin")){
     header("location:login.php");
 }
 function passAcak($panjang)

@@ -130,6 +130,14 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                             <i class="notika-icon notika-calendar"></i>
                                         </div>
                                         <div class="nk-int-st">
+                                            <input type="text" class="form-control" value="Tanggal Berakhir Lowongan" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            
+                                        </div>
+                                        <div class="nk-int-st">
                                             <input type="date" class="form-control" name="tanggal" placeholder="Tanggal berakhir">
                                         </div>
                                     </div>

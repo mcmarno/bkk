@@ -119,6 +119,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                     </div>
                                     <div>
                                         <input type="hidden" name="id_loker" value="<?php echo $id_loker ?>">
+                                        <input type="hidden" name="tgl" value="<?php echo $data['tanggal_ex'] ?>">
                                     </div>
                                     <div class="form-group ic-cmp-int">
                                         <div class="form-ic-cmp">
@@ -141,12 +142,12 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                             <i class="notika-icon notika-calendar"></i>
                                         </div>
                                         <div class="nk-int-st">
-                                            <input type="text" class="form-control" value="<?php echo $tanggal ?>" readonly="readonly">
+                                            <input type="text" class="form-control" value="Tanggal Berakhir Lowongan <?php echo $tanggal ?>" readonly="readonly">
                                         </div>
                                     </div>
                                     <div class="form-group ic-cmp-int">
                                         <div class="form-ic-cmp">
-                                            <i class="notika-icon notika-calendar"></i>
+                                            
                                         </div>
                                         <div class="nk-int-st">
                                             <input type="date" class="form-control" name="tanggal">
