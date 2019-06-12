@@ -7,6 +7,8 @@
                             <ul class="mobile-menu-nav">
                                 <li><a href="loker.php">Lowongan Kerja</a>
                                 </li>
+                                <li><a href="informasi.php">Informasi</a>
+                                </li>
                                 <li><a href="pelamar.php">Data Pelamar</a>
                                 </li>
                                 <li><a href="perusahaan.php">Data Perusahaan</a>
@@ -26,12 +28,20 @@
     </div>
     <!-- Mobile Menu end -->
     <!-- Main Menu area start-->
+    <?php
+    include('config.php');
+    $hitung = mysqli_query($conn, "SELECT SUM(cekview) AS hitung FROM pengumuman");
+    $hasil = mysqli_fetch_array($hitung);
+
+    ?>
     <div class="main-menu-area mg-tb-40">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                         <li><a href="loker.php"><i class="fa fa-home"></i> Lowongan Kerja</a>
+                        </li>
+                        <li><a href="pengumuman.php"><i class="fa fa-envelope"></i> Informasi <button class='btn btn-danger btn-sm'> <?php echo $hasil['hitung'] ?></button></a>
                         </li>
                         <li><a href="pelamar.php"><i class="fa fa-file-text-o"></i> Data Pelamar</a>
                         </li>

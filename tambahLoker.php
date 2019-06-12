@@ -6,6 +6,26 @@ if($_SESSION['level']==""){
 if($_SESSION['level']!=("admin" OR "perusahaan")){
     header("location:login.php");
 }
+include "config.php";
+$carikode = mysqli_query($conn, "SELECT id_loker FROM loker") or die (mysqli_error());
+  // menjadikannya array
+$datakode = mysqli_fetch_array($carikode);
+$jumlah_data = mysqli_num_rows($carikode);
+  // jika $datakode
+if ($datakode) {
+   // membuat variabel baru untuk mengambil kode barang mulai dari 1
+   $nilaikode = substr($jumlah_data[0], 1);
+   // menjadikan $nilaikode ( int )
+   $kode = (int) $nilaikode;
+   // setiap $kode di tambah 1
+   $kode = $jumlah_data + 1;
+   // hasil untuk menambahkan kode 
+   // angka 3 untuk menambahkan tiga angka setelah B dan angka 0 angka yang berada di tengah
+   // atau angka sebelum $kode
+   $kode_otomatis = "".str_pad($kode, STR_PAD_LEFT);
+} else {
+   $kode_otomatis = "1";
+}
 ?>
 <!doctype html>
 <html class="no-js" lang="">
@@ -112,6 +132,9 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                                     <div class="form-group ic-cmp-int">
                                         <div class="form-ic-cmp">
                                             <i class="notika-icon notika-form"></i>
+                                        </div>
+                                        <div>
+                                            <input type="hidden" name="id_loker" value="<?php echo $kode_otomatis ?>">
                                         </div>
                                         <div class="nk-int-st">
                                             <input type="text" class="form-control" name="nama" placeholder="Nama Perusahaan">

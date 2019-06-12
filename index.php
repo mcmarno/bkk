@@ -90,7 +90,7 @@
     <!-- Start Status area -->
     <?php
     include('config.php');
-    $query = mysqli_query($conn, "SELECT * FROM loker ORDER BY tanggal_ex DESC");
+    $query = mysqli_query($conn, "SELECT * FROM loker ORDER BY id_loker DESC");
     ?>
 
      <div class="dialog-area">

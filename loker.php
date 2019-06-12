@@ -105,11 +105,11 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
     $b = $hasil['nama_perusahaan'];
     if($_SESSION['level']=="admin")
     {
-        $query = mysqli_query($conn, "SELECT * FROM loker ORDER BY tanggal_ex DESC");
+        $query = mysqli_query($conn, "SELECT * FROM loker ORDER BY id_loker DESC");
     }
     else
     {
-        $query = mysqli_query($conn, "SELECT * FROM loker WHERE nama_perusahaan = '$b'");
+        $query = mysqli_query($conn, "SELECT * FROM loker WHERE nama_perusahaan = '$b' ORDER BY id_loker DESC");
     }
 
     ?>
@@ -132,9 +132,19 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                             echo "<p>berakhir pada tanggal : ".$tanggal."</p>";
                         echo "</div>";
                         echo "<div class='dialog-pro dialog'>";
-                            echo "<a data-toggle='modal' data-target='#myModalone' data-id=".$data['id_loker']."><button class='btn btn-info btn-sm'>Lihat </button></a>
-                            <a data-toggle='modal' data-target='#myModalone' data-id=".$data['id_loker']."><button class='btn btn-success btn-sm'>Lamar </button></a>
-                             <a href='ubahLoker.php?id=$data[id_loker]'><button class='btn btn-warning btn-sm'>Ubah </button></a>
+                            echo "<a data-toggle='modal' data-target='#myModalone' data-id=".$data['id_loker']."><button class='btn btn-info btn-sm'>Lihat </button></a>"; ?>
+                            <?php
+                            if($_SESSION['level']=="admin") 
+                            {
+                               echo "<a href='lamarLoker.php?id=$data[id_loker]'><button class='btn btn-success btn-sm'>Lamar </button></a>";
+                            }
+                            else
+                            {
+                              echo "<a href='cekPelamar.php?id=$data[id_loker]'><button class='btn btn-success btn-sm'>Pelamar </button></a>";
+                            }?>
+                            <?php
+                            
+                            echo "<a href='ubahLoker.php?id=$data[id_loker]'><button class='btn btn-warning btn-sm'>Ubah </button></a>
                               <a href='hapusLoker.php?id=$data[id_loker]'><button class='btn btn-danger btn-sm'>Hapus </button></a>
                         </div>";
                 echo "</div>";

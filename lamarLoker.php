@@ -84,14 +84,21 @@ if($_SESSION['level']!="admin") {
                     <div class="logo-area">
                         <a href="#"><img src="img/logo/logo.png" alt="" /></a>
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
     </div>
     <!-- End Header Top Area -->
     <!-- Mobile Menu start -->
     <?php
-    include("headerAdmin.php");
+    if($_SESSION['level']=="admin")
+    {
+        include('headerAdmin.php');
+    }
+    else
+    {
+        include('headerPerusahaan.php');
+    }
     ?>
     <!-- Main Menu area End-->
     <!-- Start Status area -->
@@ -109,7 +116,14 @@ if($_SESSION['level']!="admin") {
     <!-- Normal Table area Start-->
     <?php
     include_once "config.php";
-    $result = mysqli_query($conn, "SELECT * FROM admin ORDER BY id_admin ASC");
+    $id = $_GET['id'];
+    $result = mysqli_query($conn, "SELECT * FROM pelamar_kerja WHERE id_loker = '$id'");
+    $cari = mysqli_fetch_array($result);
+    $cari1 = $cari['id_pelamar'];
+    $ketemu = mysqli_query($conn, "SELECT * FROM pelamar LEFT JOIN pelamar_kerja USING(id_pelamar) WHERE id_loker = '$id' ORDER BY nama_pelamar ASC" );
+    $query = mysqli_query($conn, "SELECT * FROM loker WHERE id_loker = '$id'");
+    $sql = mysqli_query($conn, "SELECT * FROM pelamar ORDER BY nama_pelamar ASC");
+    $hasil = mysqli_fetch_array($query);
     ?>
     <div class="data-table-area">
         <div class="container">
@@ -117,29 +131,65 @@ if($_SESSION['level']!="admin") {
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="data-table-list">
                         <div class="basic-tb-hd">
-                            <h2>Data Admin</h2>
-                            <a href="tambahAdmin.php"><button class="btn btn-primary btn-icon-notika"><i class="notika-icon notika-plus-symbol" title="tambah"> Tambah Admin</i> </button></a>
+                            <h2>Data Pelamar</h2>
+
                         </div>
                         <div class="table-responsive">
                             <table id="data-table-basic" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Nama</th>
-                                        <th>Alamat</th>
-                                        <th>NO Telp</th>
-                                        <th>Email</th>
+                                        <th>Ketrampilan</th>
+                                        <th>Pendidikan</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 <?php  
+                                 while($dat = mysqli_fetch_array($sql)) {
+                                    echo"<tr>";
+                                    echo "<td>" .$dat['nama_pelamar']. "</td>";
+                                    echo "<td>" .$dat['ketrampilan']. "</td>";
+                                    echo "<td>" .$dat['pendidikan']. "</td>";
+                                     echo "<td>
+                                     <a href='prosesLamar.php?id=$dat[id_pelamar]&&id_loker=$hasil[id_loker]'><button class='btn btn-success btn-sm fa fa-plus'></button></a>
+                                     <a data-toggle='modal' data-target='#myModalone' data-id=".$dat['id_pelamar']."><button class='btn btn-info btn-sm'>Lihat </button></a></td>";
+                                    echo"</tr>";
+                                }
+                                ?>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+
+
+
+    <div class="data-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="data-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Data Pelamar Yang Melamar ke <?php echo $hasil['nama_perusahaan'] ?> sebagai <?php echo $hasil['posisi'] ?></h2>
+                            
+                        </div>
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nama</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                    <?php  
-                                    while($data = mysqli_fetch_array($result)) {
+                                    while($data = mysqli_fetch_array($ketemu)) {
                                         echo"<tr>";
-                                        echo "<td>" .$data['nama_admin']. "</td>";
-                                        echo "<td>".$data['alamat']."</td>";
-                                        echo "<td>".$data['no_telp']."</td>";
-                                        echo "<td>".$data['email']."</td>";
-                                        echo "<td><a href='hapusAdmin.php?id=$data[id_admin]'><button title='hapus' class='btn btn-danger btn-sm fa fa-trash'> hapus </button></a></td>";
+                                        echo "<td>" .$data['nama_pelamar']. "</td>";
+                                        echo "<td><a href='hapusLamarLoker.php?id=$data[id_pel]&&id_loker=$id'><button title='hapus' class='btn btn-danger btn-sm fa fa-trash'> hapus </button></a></td>";
                                         echo"</tr>";
                                     }
                                     ?>
@@ -147,6 +197,22 @@ if($_SESSION['level']!="admin") {
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModalone" role="dialog">
+        <div class="modal-dialog modals-default" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="fetched-data"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -236,6 +302,22 @@ if($_SESSION['level']!="admin") {
     
     <script src="js/data-table/data-table-act.js"></script>
     <script src="js/data-table/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#myModalone').on('show.bs.modal', function (e) {
+            var idx = $(e.relatedTarget).data('id');
+            //menggunakan fungsi ajax untuk pengambilan data
+            $.ajax({
+                type : 'post',
+                url : 'detailPelamar.php',
+                data :  'idx='+ idx,
+                success : function(data){
+                $('.fetched-data').html(data);//menampilkan data ke dalam modal
+                }
+            });
+         });
+    });
+  </script>
 </body>
 
 </html>

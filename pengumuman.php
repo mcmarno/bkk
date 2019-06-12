@@ -3,7 +3,7 @@ session_start();
 if($_SESSION['level']==""){
     header("location:login.php");
 }
-if($_SESSION['level']!=("admin" OR "perusahaan")){
+if($_SESSION['level']!=("admin")){
     header("location:login.php");
 }
 ?>
@@ -63,7 +63,6 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
     <!-- responsive CSS
 		============================================ -->
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/summernote/summernote.css">
     <!-- modernizr JS
 		============================================ -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
@@ -74,7 +73,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     <!-- Start Header Top Area -->
-    <div class="header-top-area">
+     <div class="header-top-area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -91,85 +90,45 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
     if($_SESSION['level']=="admin")
     {
         include('headerAdmin.php');
-    }else
+    }
+    else
     {
         include('headerPerusahaan.php');
     }
     ?>
+    <!-- End Header Top Area -->
+    <!-- Mobile Menu start -->
     <!-- Main Menu area End-->
     <!-- Start Status area -->
     <?php
     include('config.php');
-    $id_loker = $_GET['id'];
-    $result = mysqli_query($conn, "SELECT * FROM loker WHERE id_loker = $id_loker");
-    $data = mysqli_fetch_array($result);
-    $tgl = $data['tanggal_ex'];
-    $tanggal = date('d-m-Y', strtotime($tgl));
+    $query = mysqli_query($conn, "SELECT * FROM pengumuman ORDER BY id_pengumuman DESC");
+
+    $ketemu = mysqli_query($conn, "SELECT * FROM loker LEFT JOIN pengumuman USING(id_loker) ORDER BY id_pengumuman DESC" );
+    $hasil = mysqli_fetch_array($ketemu);
+
     ?>
-    <div class="form-element-area">
-        <form action="prosesUbahLoker.php" method="POST" enctype="multipart/form-data">                     
-            <div class="row">
-                <div class="summernote-area">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="summernote-wrap mg-t-30">
-                                    <div class="cmp-tb-hd bcs-hd">
-                                        <h2>Edit Lowongan Kerja</h2>
-                                    </div>
-                                    <div>
-                                        <input type="hidden" name="id_loker" value="<?php echo $id_loker ?>">
-                                        <input type="hidden" name="tgl" value="<?php echo $data['tanggal_ex'] ?>">
-                                    </div>
-                                    <div class="form-group ic-cmp-int">
-                                        <div class="form-ic-cmp">
-                                            <i class="notika-icon notika-form"></i>
-                                        </div>
-                                        <div class="nk-int-st">
-                                            <input type="text" class="form-control" name="nama" value="<?php echo $data['nama_perusahaan'] ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group ic-cmp-int">
-                                        <div class="form-ic-cmp">
-                                            <i class="notika-icon notika-credit-card"></i>
-                                        </div>
-                                        <div class="nk-int-st">
-                                            <input type="text" class="form-control" name="posisi" value="<?php echo $data['posisi'] ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group ic-cmp-int">
-                                        <div class="form-ic-cmp">
-                                            <i class="notika-icon notika-calendar"></i>
-                                        </div>
-                                        <div class="nk-int-st">
-                                            <input type="text" class="form-control" value="Tanggal Berakhir Lowongan <?php echo $tanggal ?>" readonly="readonly">
-                                        </div>
-                                    </div>
-                                    <div class="form-group ic-cmp-int">
-                                        <div class="form-ic-cmp">
-                                            
-                                        </div>
-                                        <div class="nk-int-st">
-                                            <input type="date" class="form-control" name="tanggal" value="<?php echo $data['tanggal_lahir'] ?>">
-                                        </div>
-                                    </div>
-                                    <div class="cmp-tb-hd bsc-smp-sm">
-                                        <label>Deskripsi</label>
-                                    </div>
-                                    <div>
-                                        <textarea name="isi" class="html-editor" value=""><?php echo $data['isi'] ?></textarea>
-                                    </div>
-                                        
-                                    <div>
-                                    <button class="btn btn-success notika-btn-success" type="submit" title="simpan">Simpan</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+
+     <div class="dialog-area">
+        <div class="container">
+            <?php
+            while($data = mysqli_fetch_array($query)) {
+            echo "<div class='row'>";
+                echo "<div class='col-md-12'>";
+                    echo "<div class='dialog-inner mg-t-30'>";
+                        echo "<div class='contact-hd dialog-hd'>";
+                            echo "<h2>".$hasil ['nama_perusahaan']."</h2>";
+                            echo "<p><-- ".$hasil['posisi']." --></p>";
+                        echo "</div>";
+                        echo "<div class='dialog-pro dialog'>";
+                            echo "<a href='proses.php?id=".$data['id_loker']."'><button class='btn btn-info btn-sm'>Selengkapnya>> </button></a>
+                        </div>";
+                    echo "</div>";
+                echo "</div>";
+            echo "</div>";
+        }
+            ?>
+        </div>
     </div>
     <!-- End Realtime sts area-->
     <!-- Start Footer area-->
@@ -189,6 +148,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
     <!-- jquery
 		============================================ -->
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
+
     <!-- bootstrap JS
 		============================================ -->
     <script src="js/bootstrap.min.js"></script>
@@ -251,9 +211,6 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
     <script src="js/main.js"></script>
 	<!-- tawk chat JS
 		============================================ -->
-    
-    <script src="js/summernote/summernote-updated.min.js"></script>
-    <script src="js/summernote/summernote-active.js"></script>
 </body>
 
 </html>
