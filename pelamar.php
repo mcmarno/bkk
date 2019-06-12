@@ -140,7 +140,7 @@ if($_SESSION['level']!="admin") {
                                         echo "<td>".$data['no_telp']."</td>";
                                         echo "<td>" .$data['ketrampilan']. "</td>";
                                         echo "<td><a data-toggle='modal' data-target='#myModalone' data-id=".$data['id_pelamar']."><button class='btn btn-info btn-sm'>Lihat </button></a>
-                                        <a href='hapusPerusahaan.php?id=$data[id_pelamar]'><button title='ubah' class='btn btn-warning btn-sm'>Ubah</button></a>
+                                        <a href='ubahPelamar.php?id=$data[id_pelamar]'><button title='ubah' class='btn btn-warning btn-sm'>Ubah</button></a>
                                         <a href='hapusPelamar.php?id=$data[id_pelamar]'><button title='hapus' class='btn btn-danger btn-sm'>Hapus</button></a></td>";
                                         echo"</tr>";
                                     }

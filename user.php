@@ -82,16 +82,23 @@ if($_SESSION['level']!="admin") {
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="logo-area">
-                        <a href="#"><img src="img/a.png" alt="" /></a>
+                        <a href="#"><img src="img/logo/logo.png" alt="" /></a>
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
     </div>
     <!-- End Header Top Area -->
     <!-- Mobile Menu start -->
     <?php
-    include("headerAdmin.php");
+    if($_SESSION['level']=="admin")
+    {
+        include('headerAdmin.php');
+    }
+    else
+    {
+        include('headerPerusahaan.php');
+    }
     ?>
     <!-- Main Menu area End-->
     <!-- Start Status area -->
