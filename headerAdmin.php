@@ -7,7 +7,7 @@
                             <ul class="mobile-menu-nav">
                                 <li><a href="loker.php">Lowongan Kerja</a>
                                 </li>
-                                <li><a href="informasi.php">Informasi</a>
+                                <li><a href="pengumuman.php">Informasi</a>
                                 </li>
                                 <li><a href="pelamar.php">Data Pelamar</a>
                                 </li>

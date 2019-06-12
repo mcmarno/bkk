@@ -104,21 +104,21 @@ if($_SESSION['level']!=("admin")){
     include('config.php');
     $query = mysqli_query($conn, "SELECT * FROM pengumuman ORDER BY id_pengumuman DESC");
 
-    $ketemu = mysqli_query($conn, "SELECT * FROM loker LEFT JOIN pengumuman USING(id_loker) ORDER BY id_pengumuman DESC" );
-    $hasil = mysqli_fetch_array($ketemu);
+    $ketemu = mysqli_query($conn, "SELECT * FROM pengumuman LEFT JOIN loker USING(id_loker) ORDER BY id_pengumuman DESC" );
+    //$hasil = mysqli_fetch_array($ketemu);
 
     ?>
 
      <div class="dialog-area">
         <div class="container">
             <?php
-            while($data = mysqli_fetch_array($query)) {
+            while($data = mysqli_fetch_array($ketemu)) {
             echo "<div class='row'>";
                 echo "<div class='col-md-12'>";
                     echo "<div class='dialog-inner mg-t-30'>";
                         echo "<div class='contact-hd dialog-hd'>";
-                            echo "<h2>".$hasil ['nama_perusahaan']."</h2>";
-                            echo "<p><-- ".$hasil['posisi']." --></p>";
+                            echo "<h2>".$data ['nama_perusahaan']."</h2>";
+                            echo "<p><-- ".$data['posisi']." --></p>";
                         echo "</div>";
                         echo "<div class='dialog-pro dialog'>";
                             echo "<a href='proses.php?id=".$data['id_loker']."'><button class='btn btn-info btn-sm'>Selengkapnya>> </button></a>

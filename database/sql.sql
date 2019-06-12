@@ -47,7 +47,7 @@ CREATE TABLE `loker` (
 
 /*Data for the table `loker` */
 
-insert  into `loker`(id_loker,posisi,nama_perusahaan,isi,tanggal_ex) values (1,'programmer','PT. UJI COBA','<p>ok yes</p>','2019-06-30 00:00:00');
+insert  into `loker`(id_loker,posisi,nama_perusahaan,isi,tanggal_ex) values (1,'programmer','PT. UJI COBA','<p>ok yes</p>','2019-06-30 00:00:00'),(2,'admin database','PT. UJI COBA','<p>ewaaa</p>','2019-06-30 00:00:00'),(3,'marketing','pt. a','<p>cek out</p><p><br></p>','2019-06-30 00:00:00');
 
 /*Table structure for table `pelamar` */
 
@@ -85,11 +85,11 @@ CREATE TABLE `pelamar_kerja` (
   KEY `FK_pelamar` (`id_pelamar`),
   CONSTRAINT `FK_pelamar` FOREIGN KEY (`id_pelamar`) REFERENCES `pelamar` (`id_pelamar`) ON DELETE CASCADE,
   CONSTRAINT `FK_pelamar_kerja` FOREIGN KEY (`id_loker`) REFERENCES `loker` (`id_loker`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pelamar_kerja` */
 
-insert  into `pelamar_kerja`(id_pel,id_loker,id_pelamar,rekrut) values (37,1,5,1),(39,1,4,1);
+insert  into `pelamar_kerja`(id_pel,id_loker,id_pelamar,rekrut) values (37,1,5,1),(39,1,4,0),(42,2,4,1),(43,2,5,1),(44,3,4,0),(45,3,5,1);
 
 /*Table structure for table `pengumuman` */
 
@@ -103,11 +103,11 @@ CREATE TABLE `pengumuman` (
   PRIMARY KEY (`id_pengumuman`),
   KEY `FK_pengumuman` (`id_loker`),
   CONSTRAINT `FK_pengumuman` FOREIGN KEY (`id_loker`) REFERENCES `loker` (`id_loker`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pengumuman` */
 
-insert  into `pengumuman`(id_pengumuman,id_loker,isi,cekview) values (2,1,'<p>panggilan tes di sini</p>',1);
+insert  into `pengumuman`(id_pengumuman,id_loker,isi,cekview) values (2,1,'<p>panggilan tes di sini</p>',0),(3,2,'<p>besok tes</p>',0),(4,3,'<p>tes tes kates</p>',0);
 
 /*Table structure for table `perusahaan` */
 
@@ -120,11 +120,11 @@ CREATE TABLE `perusahaan` (
   `no_telp` varchar(15) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_perusahaan`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 /*Data for the table `perusahaan` */
 
-insert  into `perusahaan`(id_perusahaan,nama_perusahaan,alamat,no_telp,email) values (11,'PT. UJI COBA','abs','435','marno08041995@gmail.com');
+insert  into `perusahaan`(id_perusahaan,nama_perusahaan,alamat,no_telp,email) values (11,'PT. UJI COBA','abs','435','marno08041995@gmail.com'),(17,'pt. a','jalan santai','435','lf_mano@yahoo.com');
 
 /*Table structure for table `user` */
 
@@ -136,11 +136,11 @@ CREATE TABLE `user` (
   `password` varchar(100) DEFAULT NULL,
   `level` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
-insert  into `user`(id_user,email,password,level) values (10,'marno08041995@gmail.com','c4c11e282b92ab0587634e593a8d19a97ddb4e6e8027603e64516ac8f2ca7f97','perusahaan'),(15,'marnodev8@gmail.com','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','admin');
+insert  into `user`(id_user,email,password,level) values (10,'marno08041995@gmail.com','c4c11e282b92ab0587634e593a8d19a97ddb4e6e8027603e64516ac8f2ca7f97','perusahaan'),(15,'marnodev8@gmail.com','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','admin'),(17,'lf_mano@yahoo.com','d728d0d141ebc3b0ad58b4e0c095bf13e85269cb582660aa9cd66f9d01ded84c','perusahaan');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
