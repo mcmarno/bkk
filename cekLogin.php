@@ -37,6 +37,12 @@ if($cek > 0){
 		$_SESSION['level'] = "perusahaan";
 		// alihkan ke halaman dashboard pegawai
 		header("location:loker.php");
+	}else if($data['level']=="pelamar"){
+		// buat session login dan username
+		$_SESSION['email'] = $email;
+		$_SESSION['level'] = "pelamar";
+		// alihkan ke halaman dashboard pegawai
+		header("location:profilPelamar.php");
 	}else{
  
 		// alihkan ke halaman login kembali

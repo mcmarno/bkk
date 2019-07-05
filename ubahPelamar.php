@@ -112,13 +112,14 @@ if($_SESSION['level']!=("admin")){
                         <div class="cmp-tb-hd cmp-int-hd">
                             <h2>Ubah Profil</h2>
                         </div>
-                        <form action="prosesUbahPelamar.php" method="POST">
+                        <form action="prosesUbahPelamar.php" method="POST" enctype="multipart/form-data">
                             <div class="form-example-int form-horizental">
                                 <div class="form-group">
                                     <div class="row">
                                         <div>
                                             <input type="hidden" name="id_pelamar" value="<?php echo $id ?>">
                                             <input type="hidden" name="tgl" value="<?php echo $tgl ?>">
+                                            <input type="hidden" name="email_awal" value="<?php echo $data['email'] ?>">
                                         </div>
                                         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                             <label class="hrzn-fm">Nama</label>
@@ -263,6 +264,48 @@ if($_SESSION['level']!=("admin")){
                                         <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                             <div class="nk-int-st">
                                                 <input type="text" class="form-control input-sm" value="<?php echo $data['ketrampilan'] ?>" name="ketrampilan">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-example-int form-horizental mg-t-15">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm">Email</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                            <div class="nk-int-st">
+                                                <input type="text" class="form-control input-sm" value="<?php echo $data['email'] ?>" name="email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-example-int form-horizental mg-t-15">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm">Sertifikat</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                            <div class="nk-int-st">
+                                                <input type="file" class="form-control input-sm" name="sertifikat">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-example-int form-horizental mg-t-15">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm">Gambar</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                            <div class="nk-int-st">
+                                                <input type="file" class="form-control input-sm" name="gambar">
                                             </div>
                                         </div>
                                     </div>

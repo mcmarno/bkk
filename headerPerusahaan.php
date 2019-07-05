@@ -9,6 +9,8 @@
                                 </li>
                                 <li><a href="profil.php">Profil</a>
                                 </li>
+                                <li><a href="pesan.php">Pesan</a>
+                                </li>
                                 <li><a href="logout.php">Logout</a>
                                 </li>
                             </ul>
@@ -28,6 +30,8 @@
                         <li><a href="loker.php"><i class="fa fa-home"></i> Lowongan Kerja</a>
                         </li>
                         <li><a href="profil.php"><i class="fa fa-user"></i> Profil</a>
+                        </li>
+                        <li><a href="pesan.php"><i class="fa fa-envelope"></i> Pesan</a>
                         </li>
                         <li><a href="logout.php"><i class="fa fa-close"></i> Logout</a>
                         </li>

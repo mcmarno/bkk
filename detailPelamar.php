@@ -99,9 +99,35 @@ if($_POST['idx']) {
                         </div>
                     </div>
                 </div>
-
-
-            </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="hrzn-fm">Email </label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <?php echo "<b>:</b> " . $result['email']; ?>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="hrzn-fm">Gambar </label>
+                    </div>
+                </div>
+                
+                <div>
+                    <img src="gambar/<?php echo $result['gambar'] ?>" width = "100%" height = "100%">
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="hrzn-fm">Sertifikat </label>
+                    </div>
+                </div>
+                
+                <div>
+                    <iframe src="sertifikat/<?php echo $result['sertifikat'] ?>" width = "100%" height = "100%">
+                </div>
 
         </form>     
 

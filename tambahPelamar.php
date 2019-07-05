@@ -6,6 +6,23 @@ if($_SESSION['level']==""){
 if($_SESSION['level']!=("admin")){
   header("location:login.php");
 }
+function passAcak($panjang)
+{
+
+    $karakter = '';
+    $karakter .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    $karakter .= '1234567890';
+    $karakter .= '@#$^*()_+=/?';
+
+    $string = '';
+    for ($i=0; $i < $panjang; $i++)
+    { 
+        $pos = rand(0, strlen($karakter)-1);
+        $string .= $karakter{$pos};
+    }
+    return $string;
+}
+$a = passAcak(4);
 
 ?>
 <!doctype html>
@@ -107,10 +124,13 @@ if($_SESSION['level']!=("admin")){
                     <div class="cmp-tb-hd cmp-int-hd">
                       <h2>Tambah Data Pelamar</h2>
                     </div>
-                    <form action="prosesTambahPelamar.php" method="POST">
+                    <form action="prosesTambahPelamar.php" method="POST" enctype="multipart/form-data">
                       <div class="form-example-int form-horizental">
                         <div class="form-group">
                           <div class="row">
+                            <div>
+                              <input type="hidden" name="password" value="<?php echo $a; ?>">
+                            </div>
                             <div class="input-group">
                               <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
                               <div class="nk-int-st">
@@ -187,6 +207,27 @@ if($_SESSION['level']!=("admin")){
                               <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
                               <div class="nk-int-st">
                                 <input type="text" class="form-control" placeholder="Ketrampilan" name="ketrampilan">
+                              </div>
+                            </div>
+
+                            <div class="input-group mg-t-15">
+                              <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-mail"></i></span>
+                              <div class="nk-int-st">
+                                <input type="text" class="form-control" placeholder="Email Address" name="email">
+                              </div>
+                            </div>
+
+                            <div class="input-group mg-t-15">
+                              <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-form"></i></span>Pilih Sertifikat
+                              <div class="nk-int-st">
+                                <input type="file" class="form-control" name="sertifikat" >
+                              </div>
+                            </div>
+
+                            <div class="input-group mg-t-15">
+                              <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-form"></i></span>Pilih Gambar
+                              <div class="nk-int-st">
+                                <input type="file" class="form-control" name="gambar" >
                               </div>
                             </div>
 
