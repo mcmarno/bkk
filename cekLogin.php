@@ -42,7 +42,7 @@ if($cek > 0){
 		$_SESSION['email'] = $email;
 		$_SESSION['level'] = "pelamar";
 		// alihkan ke halaman dashboard pegawai
-		header("location:profilPelamar.php");
+		header("location:loker.php");
 	}else{
  
 		// alihkan ke halaman login kembali

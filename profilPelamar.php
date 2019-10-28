@@ -113,6 +113,7 @@ if($_SESSION['level']!="pelamar") {
         <!-- Breadcomb area End-->
         <!-- Normal Table area Start-->
         <?php
+        include('headerPelamar.php');
         include_once "config.php";
         $email = $_SESSION['email'];
         $result = mysqli_query($conn, "SELECT * FROM pelamar WHERE email = '$email'");
@@ -120,6 +121,7 @@ if($_SESSION['level']!="pelamar") {
         $tgl = $hasil['tanggal_lahir'];
         $tanggal = date('d-m-Y', strtotime($tgl));
         ?>
+
         <div class="dialog-area">
             <div class="container">
                 <div class="row">

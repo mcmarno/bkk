@@ -3,7 +3,7 @@ session_start();
 if($_SESSION['level']==""){
     header("location:login.php");
 }
-if($_SESSION['level']!=("admin" OR "perusahaan")){
+if($_SESSION['level']!=("admin" OR "perusahaan" OR "pelamar")){
     header("location:login.php");
 }
 ?>
@@ -90,9 +90,13 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
     if($_SESSION['level']=="admin")
     {
         include('headerAdmin.php');
-    }else
+    }
+    elseif($_SESSION['level']=="perusahaan")
     {
         include('headerPerusahaan.php');
+    }else
+    {
+        include('headerPelamar.php');
     }
     ?>
     <!-- Main Menu area End-->
@@ -116,10 +120,15 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
 
      <div class="dialog-area">
         <div class="container">
-            <div>
-                <a href='tambahLoker.php'><button class='btn btn-primary btn-sm'>Tambah </button></a>
-            </div>
             <?php
+            if($_SESSION['level']==("admin" OR "perusahaan"))
+            {
+                "<div>
+                <a href='tambahLoker.php'><button class='btn btn-primary btn-sm'>Tambah </button></a>
+                </div>";
+            }
+            
+            
             while($data = mysqli_fetch_array($query)) {
                 $tgl = $data['tanggal_ex'];
                 $tanggal = date('d-m-Y', strtotime($tgl));
@@ -138,15 +147,24 @@ if($_SESSION['level']!=("admin" OR "perusahaan")){
                             {
                                echo "<a href='lamarLoker.php?id=$data[id_loker]'><button class='btn btn-success btn-sm'>Lamar </button></a>";
                             }
+                            elseif($_SESSION['level']=="pelamar") 
+                            {
+                                echo "<a href='lamarLoker.php?id=$data[id_loker]'><button class='btn btn-success btn-sm'>Lamar </button></a>";
+                            }
                             else
                             {
                               echo "<a href='cekPelamar.php?id=$data[id_loker]'><button class='btn btn-success btn-sm'>Pelamar </button></a>";
                             }?>
                             <?php
-                            
+                            if($_SESSION['level']!="pelamar")
+                            {
                             echo "<a href='ubahLoker.php?id=$data[id_loker]'><button class='btn btn-warning btn-sm'>Ubah </button></a>
-                              <a href='hapusLoker.php?id=$data[id_loker]'><button class='btn btn-danger btn-sm'>Hapus </button></a>
-                        </div>";
+                              <a href='hapusLoker.php?id=$data[id_loker]'><button class='btn btn-danger btn-sm'>Hapus </button></a>";
+                            
+                            }
+                             ?>
+                            <?php
+                         echo   "</div>";
                 echo "</div>";
             echo "</div>";
         }

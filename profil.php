@@ -3,9 +3,7 @@ session_start();
 if($_SESSION['level']==""){
     header("location:login.php");
 }
-if($_SESSION['level']!=("admin" OR "perusahaan")){
-    header("location:login.php");
-}
+
 ?>
 <!doctype html>
 <html class="no-js" lang="">

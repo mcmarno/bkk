@@ -139,8 +139,15 @@ $a = passAcak(4);
                             </div>
                         </div>
 
+                        <div class="input-group mg-t-15">
+                            <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-credit-card"></i></span>
+                            <div class="nk-int-st">
+                                <input type="text" class="form-control" placeholder="Password" name="password">
+                            </div>
+                        </div>
+
                         <div class="fm-checkbox">
-                            <label><input type="checkbox" class="i-checks"> <i></i> Password akan dikirimkan ke email</label>
+                            <label><a href="registrasiPelamar.php"> Daftar Sebagai Pelamar</a></label>
                         </div>
 
                         <button type="submit" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow right-arrow-ant"></i>
