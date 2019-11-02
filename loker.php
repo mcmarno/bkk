@@ -107,7 +107,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan" OR "pelamar")){
     $result = mysqli_query($conn, "SELECT * FROM perusahaan WHERE email = '$a'");
     $hasil = mysqli_fetch_array($result);
     $b = $hasil['nama_perusahaan'];
-    if($_SESSION['level']=="admin")
+    if($_SESSION['level']==("admin" OR "pelamar"))
     {
         $query = mysqli_query($conn, "SELECT * FROM loker ORDER BY id_loker DESC");
     }
@@ -149,7 +149,7 @@ if($_SESSION['level']!=("admin" OR "perusahaan" OR "pelamar")){
                             }
                             elseif($_SESSION['level']=="pelamar") 
                             {
-                                echo "<a href='lamarLoker.php?id=$data[id_loker]'><button class='btn btn-success btn-sm'>Lamar </button></a>";
+                                echo "<a href='lamarLokerPelamar.php?id=$data[id_loker]'><button class='btn btn-success btn-sm'>Lamar </button></a>";
                             }
                             else
                             {

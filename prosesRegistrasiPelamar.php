@@ -32,10 +32,11 @@ if(move_uploaded_file($tmp, $pathsertifikat) AND move_uploaded_file($tmpp, $path
 	$query1 = "INSERT INTO user (email, password, level) VALUES ('$email', '$password', '$level')";
 	$sql = mysqli_query($conn, $query);
 	$sql = mysqli_query($conn, $query1);
+	header("location:login.php");
+
 }else
 {
 	echo "Maaf, Gambar dan Sertifikat gagal untuk diupload.";
-	echo "<br><a href='tambahPelamar.php'>Kembali Ke Form</a>";
+	echo "<br><a href='registrasiPelamar.php'>Kembali Ke Form</a>";
 }
-header("location:login.php");
 ?>
