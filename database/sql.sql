@@ -68,11 +68,11 @@ CREATE TABLE `pelamar` (
   `gambar` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_pelamar`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pelamar` */
 
-insert  into `pelamar`(id_pelamar,nama_pelamar,jenis_kelamin,tempat_lahir,tanggal_lahir,alamat,agama,no_telp,pendidikan,ketrampilan,sertifikat,gambar,email) values (4,'harizha justine ramadhianita','PEREMPUAN','magetan','2019-06-30','jalan santai','ISLAM','08','SMA','super',NULL,NULL,NULL),(15,'a','LAKI - LAKI','a','2019-10-03','a','ISLAM','1','a','a','a_0_lampiran-.pdf','a_android-icon-144x144.png','marno08041995@gmail.com');
+insert  into `pelamar`(id_pelamar,nama_pelamar,jenis_kelamin,tempat_lahir,tanggal_lahir,alamat,agama,no_telp,pendidikan,ketrampilan,sertifikat,gambar,email) values (4,'harizha justine ramadhianita','PEREMPUAN','magetan','2019-06-30','jalan santai','ISLAM','08','SMA','super',NULL,NULL,NULL),(15,'a','LAKI - LAKI','a','2019-10-03','a','ISLAM','1','a','a','a_0_lampiran-.pdf','a_android-icon-144x144.png','marno08041995@gmail.com'),(16,'as','LAKI - LAKI','adad','2019-10-31','adad','ISLAM','111','afa','ada','as_0_lampiran-.pdf','as_apple-icon.png','a@aa.com');
 
 /*Table structure for table `pelamar_kerja` */
 
@@ -83,17 +83,17 @@ CREATE TABLE `pelamar_kerja` (
   `id_loker` int(11) NOT NULL,
   `id_pelamar` int(11) NOT NULL,
   `rekrut` int(1) DEFAULT '0',
-  `cek_view` int(1) DEFAULT '1',
+  `cek_view` int(1) DEFAULT '0',
   UNIQUE KEY `id_pel` (`id_pel`),
   KEY `FK_pelamar_kerja` (`id_loker`),
   KEY `FK_pelamar` (`id_pelamar`),
   CONSTRAINT `FK_pelamar` FOREIGN KEY (`id_pelamar`) REFERENCES `pelamar` (`id_pelamar`) ON DELETE CASCADE,
   CONSTRAINT `FK_pelamar_kerja` FOREIGN KEY (`id_loker`) REFERENCES `loker` (`id_loker`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pelamar_kerja` */
 
-insert  into `pelamar_kerja`(id_pel,id_loker,id_pelamar,rekrut,cek_view) values (47,1,4,0,1),(49,5,4,0,1),(52,2,4,1,1);
+insert  into `pelamar_kerja`(id_pel,id_loker,id_pelamar,rekrut,cek_view) values (47,1,4,0,1),(49,5,4,0,1),(52,2,4,1,1),(59,5,15,0,0);
 
 /*Table structure for table `pengumuman` */
 
@@ -140,11 +140,11 @@ CREATE TABLE `user` (
   `password` varchar(100) DEFAULT NULL,
   `level` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
-insert  into `user`(id_user,email,password,level) values (1,'lf_mano@yahoo.com','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','admin'),(19,'marnodev8@gmail.com','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','perusahaan'),(26,'','08ec1b04222b26731d1224d33d75b3177bb341356ebaa200de44e69d668eab38','perusahaan'),(29,'marno08041995@gmail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','pelamar');
+insert  into `user`(id_user,email,password,level) values (1,'lf_mano@yahoo.com','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','admin'),(19,'marnodev8@gmail.com','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','perusahaan'),(26,'','08ec1b04222b26731d1224d33d75b3177bb341356ebaa200de44e69d668eab38','perusahaan'),(29,'marno08041995@gmail.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','pelamar'),(30,'a@aa.com','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','pelamar');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
