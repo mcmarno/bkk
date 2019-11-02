@@ -5,7 +5,7 @@ session_start();
 if($_SESSION['level']==""){
     header("location:login.php");
 }
-if($_SESSION['level']!=("admin" OR "perusahaan")) {
+if($_SESSION['level']!=("admin" OR "perusahaan" OR "pelamar")) {
     header("location:login.php");
 }
 
@@ -95,9 +95,13 @@ if($_SESSION['level']!=("admin" OR "perusahaan")) {
     {
         include('headerAdmin.php');
     }
-    else
+    elseif($_SESSION['level']=="perusahaan")
     {
         include('headerPerusahaan.php');
+    }
+    else
+    {
+        include('headerPelamar.php');
     }
     ?>
     <!-- Main Menu area End-->
