@@ -93,7 +93,7 @@ if($_SESSION['level']!=("admin" OR "pelamar")){
     }
     else
     {
-        include('headerPerusahaan.php');
+        include('headerPelamar.php');
     }
     ?>
     <!-- End Header Top Area -->
@@ -101,10 +101,23 @@ if($_SESSION['level']!=("admin" OR "pelamar")){
     <!-- Main Menu area End-->
     <!-- Start Status area -->
     <?php
+    $email = $_SESSION['email'];
     include('config.php');
     $query = mysqli_query($conn, "SELECT * FROM pengumuman ORDER BY id_pengumuman DESC");
 
-    $ketemu = mysqli_query($conn, "SELECT * FROM pengumuman LEFT JOIN loker USING(id_loker) ORDER BY id_pengumuman DESC" );
+    
+    $cari = mysqli_query($conn, "SELECT * FROM pelamar WHERE email = '$email'");
+    $id = mysqli_fetch_array($cari);
+    $id_pelamar = $id['id_pelamar'];
+    if ($_SESSION['level']=="pelamar")
+    {
+       $pp = mysqli_query ($conn, "SELECT * FROM pengumuman INNER JOIN pelamar_kerja ON pengumuman.id_loker = pelamar_kerja.id_loker LEFT JOIN loker ON pengumuman.id_loker = loker.id_loker WHERE id_pelamar = '$id_pelamar' ORDER BY id_pengumuman DESC");
+    }
+    else
+    {
+        $pp = mysqli_query($conn, "SELECT * FROM pengumuman LEFT JOIN loker USING(id_loker) ORDER BY id_pengumuman DESC" );
+    }
+    
     //$hasil = mysqli_fetch_array($ketemu);
 
     ?>
@@ -112,7 +125,7 @@ if($_SESSION['level']!=("admin" OR "pelamar")){
      <div class="dialog-area">
         <div class="container">
             <?php
-            while($data = mysqli_fetch_array($ketemu)) {
+            while($data = mysqli_fetch_array($pp)) {
             echo "<div class='row'>";
                 echo "<div class='col-md-12'>";
                     echo "<div class='dialog-inner mg-t-30'>";
