@@ -93,7 +93,7 @@ CREATE TABLE `pelamar_kerja` (
 
 /*Data for the table `pelamar_kerja` */
 
-insert  into `pelamar_kerja`(id_pel,id_loker,id_pelamar,rekrut,cek_view) values (47,1,4,0,1),(49,5,4,0,1),(52,2,4,1,1),(59,5,15,0,0);
+insert  into `pelamar_kerja`(id_pel,id_loker,id_pelamar,rekrut,cek_view) values (49,5,4,0,1),(52,2,4,1,1),(59,5,15,0,0);
 
 /*Table structure for table `pengumuman` */
 
@@ -111,7 +111,7 @@ CREATE TABLE `pengumuman` (
 
 /*Data for the table `pengumuman` */
 
-insert  into `pengumuman`(id_pengumuman,id_loker,isi,cekview) values (5,1,'<p>tes pada tanggal 1 januari 2019 di sinii</p>',1),(6,2,'<p>Zjsj</p>',1),(7,2,'<p>Shsjsjss</p>',1),(8,2,'<p>Tes</p>',1),(9,2,'<p>Dhdhhd</p>',1);
+insert  into `pengumuman`(id_pengumuman,id_loker,isi,cekview) values (5,1,'<p>tes pada tanggal 1 januari 2019 di sinii</p>',1),(9,5,'<p>Dhdhhd</p>',0);
 
 /*Table structure for table `perusahaan` */
 
